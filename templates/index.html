@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Python Script</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Run Python Script</h1>
+    <form id="scriptForm" method="POST">
+        <button type="submit">Run Script</button>
+    </form>
+    <div id="output"></div>
+    <script>
+        document.getElementById('scriptForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const response = await fetch('/run-script', { method: 'POST' });
+            const data = await response.json();
+            document.getElementById('output').innerText = data.output;
+        };
+    </script>
+</body>
+</html>
